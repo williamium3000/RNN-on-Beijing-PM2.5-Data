@@ -46,10 +46,10 @@ torch.backends.cudnn.benchmark = True
 
 logging.basicConfig(filename="PRSA_rnn.log", level=logging.INFO)
 def check_accuracy(device, loader, model, phase):
-    loss_func = nn.MSELoss()
+    loss_func = nn.L1Loss("mean")
     logging.info('Checking loss on %s set: ' % phase)
     model.eval()
-    # num_samples = 0
+    num_samples = 0
     total_loss = 0
     with torch.no_grad():
         for x, y in loader:
@@ -57,15 +57,15 @@ def check_accuracy(device, loader, model, phase):
             y = y.to(device=device)
             scores = model(x)
             loss = loss_func(scores, y)
-            total_loss += loss.item()
-            # num_samples += x.size(0)
-        # total_loss = total_loss / num_samples
+            total_loss += loss.item() * x.size(0)
+            num_samples += x.size(0)
+        total_loss = total_loss / num_samples
         logging.info("{} loss: {}".format(phase, total_loss))
         return total_loss
 
 
 def train(model, optimizer, dataloaders, device, epochs):
-    loss_func = nn.MSELoss()
+    loss_func = nn.L1Loss("mean")
     rec = []
     model = model.to(device=device)
     best_model_wts = copy.deepcopy(model.state_dict())
@@ -114,10 +114,10 @@ def save_model(save_dir, whole_model, file_name=None, model=None):
 task_name = "PRSA"
 optimizer_name = 'Adam'
 lr = 0.0001
-batch_size = 32
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+batch_size = 256
+device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 dtype = torch.float32
-epochs = 1
+epochs = 100
 logging.info(
     """{}:
     - optimizer: {}
