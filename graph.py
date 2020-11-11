@@ -2,14 +2,20 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = json.
-x = np.linspace(0, 10, 1000)
-y = np.sin(x)
-plt.figure(figsize=(6,4))
-plt.plot(x,y,color="red",linewidth=1 )
-plt.xlabel("x") #xlabel、ylabel：分别设置X、Y轴的标题文字。
-plt.ylabel("sin(x)")
-plt.title("正弦曲线图") # title：设置子图的标题。
-plt.ylim(-1.1,1.1)# xlim、ylim：分别设置X、Y轴的显示范围。
-plt.savefig('quxiantu.png',dpi=120,bbox_inches='tight')
-# plt.show()
+data = json.load(open("rec.json"))
+train_loss = []
+test_loss = []
+for piece in data:
+    train_loss.append(piece[1])
+    test_loss.append(piece[2])
+
+x = list(range(len(train_loss)))
+ax1 = plt.subplot(1,1,1)
+
+ax1.plot(x, train_loss, color="red",linewidth=1, label = "train loss")
+ax1.plot(x, test_loss, color="blue",linewidth=1, label = "test loss")
+plt.xlabel("epoch")
+plt.ylabel("loss")
+plt.title("train/test loss with respect to epoch")
+ax1.legend()
+plt.show()

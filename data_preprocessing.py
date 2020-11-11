@@ -106,4 +106,4 @@ test_data_set = DataSetForPRSA(test_X, test_y, 2)
 train_data_loader = torch.utils.data.DataLoader(train_data_set,
             batch_size=128, shuffle=True, num_workers=0, pin_memory=True, drop_last=True)
 test_data_loader = torch.utils.data.DataLoader(test_data_set,
-            batch_size=128, shuffle=True, num_workers=0, pin_memory=True, drop_last=True)
+            batch_size=2, shuffle=True, num_workers=0, pin_memory=True, drop_last=True)
