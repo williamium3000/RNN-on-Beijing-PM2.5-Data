@@ -43,7 +43,11 @@ def load_model(path, whole_model, model = None):
 
 
 model = Model()
-model = load_model(path = "model_checkpoint/best_model_checkpoint.pkl", whole_model = False, model = model)
-x, y = next(data_preprocessing.test_data_loader)
+model.load_state_dict(torch.load("model_checkpoint/best_model_checkpoint.pkl"))
+# model = load_model(path = "model_checkpoint/best_model_checkpoint.pkl", whole_model = False, model = model)
+x, y = next(iter(data_preprocessing.test_data_loader))
+print(x.size())
 scores = model(x)
 print(scores)
+print("______________")
+print(y)

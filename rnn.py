@@ -69,7 +69,7 @@ def train(model, optimizer, dataloaders, device, epochs):
     rec = []
     model = model.to(device=device)
     best_model_wts = copy.deepcopy(model.state_dict())
-    best_loss = 0.0
+    best_loss = 10e10
     for e in range(epochs):
         for t, (x, y) in enumerate(dataloaders['train']):
             model.train()
@@ -117,7 +117,7 @@ lr = 0.0001
 batch_size = 256
 device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 dtype = torch.float32
-epochs = 100
+epochs = 20
 logging.info(
     """{}:
     - optimizer: {}
