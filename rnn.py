@@ -11,28 +11,25 @@ import os
 import time
 import json
 import logging
+
+
 class Model(nn.Module):
     def __init__(self):
         super().__init__()
         dimension_of_one_input = 8
-        num_of_layers = 100
-        dropout = 0# 0 for no dropout
-        hidden_size = 32
+        num_of_layers = 2
+        dropout = 0.5# 0 for no dropout
+        hidden_size = 100
         # self.rnn = nn.LSTM(input_size = dimension_of_one_input, hidden_size = hidden_size, num_layers = num_of_layers, batch_first = True, dropout = dropout)
-        self.rnn = nn.RNN(input_size = dimension_of_one_input, hidden_size = hidden_size, num_layers = num_of_layers, batch_first = True, dropout = dropout)    
-        
-        # nn.init.orthogonal(self.rnn.weight_ih_l0)  
-        # nn.init.orthogonal(self.rnn.weight_hh_l0)   
-        
-        # self.rnn = nn.GRU(input_size = dimension_of_one_input, hidden_size = hidden_size, num_layers = num_of_layers,batch_first = True, dropout = dropout)   
+        # self.rnn = nn.RNN(input_size = dimension_of_one_input, hidden_size = hidden_size, num_layers = num_of_layers, batch_first = True, dropout = dropout)    
+        self.rnn = nn.GRU(input_size = dimension_of_one_input, hidden_size = hidden_size, num_layers = num_of_layers,batch_first = True, dropout = dropout)   
         self.out = nn.Linear(hidden_size, 1)
         # nn.init.kaiming_uniform(self.out.weight)
     def forward(self, x):
         '''
         x.shape:(batch_num, time_step, dimension_of_one_input)
         '''
-        # r_out, (h_n, h_c) = self.rnn(x, None)
-        r_out, h_n = self.rnn(x, None)
+        r_out, (h_n, h_c) = self.rnn(x, None)
         # r_out, h_n = self.rnn(x, None)
         out = self.out(r_out[:, -1, :]).squeeze()
         return out
@@ -44,7 +41,7 @@ torch.cuda.manual_seed_all(0)# 为所有的GPU设置种子，以使得结果是�
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = True
 
-logging.basicConfig(filename="PRSA_rnn.log", level=logging.INFO)
+
 def check_accuracy(device, loader, model, phase):
     loss_func = nn.L1Loss("mean")
     logging.info('Checking loss on %s set: ' % phase)
@@ -91,7 +88,7 @@ def train(model, optimizer, dataloaders, device, epochs):
         rec.append((loss.item(), train_loss, test_loss))
     logging.info('Best val loss: {:4f}'.format(best_loss))
     model.load_state_dict(best_model_wts)
-    save_model(save_dir='model_checkpoint', whole_model=False, file_name="best_model_checkpoint",
+    save_model(save_dir='model_checkpoint', whole_model=False, file_name=task_name,
         model=model)
     return model, best_loss, rec
 
@@ -111,13 +108,15 @@ def save_model(save_dir, whole_model, file_name=None, model=None):
     else:
         logging.info('check point not saved, best_model is None')
 
-task_name = "PRSA"
+task_name = "PRSA_GRU"
 optimizer_name = 'Adam'
 lr = 0.0001
 batch_size = 256
 device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
-dtype = torch.float32
-epochs = 20
+epochs = 50
+
+logging.basicConfig(filename="{}.log".format(task_name), level=logging.INFO)
+
 logging.info(
     """{}:
     - optimizer: {}
@@ -148,7 +147,7 @@ if __name__ == "__main__":
 
     best_model, best_loss, rec = train(model=rnn, optimizer=optimizer, dataloaders=dataLoaders, device=device,
         epochs=epochs)
-    json.dump(rec, open('rec.json', 'w'))
+    json.dump(rec, open('{}.json'.format(task_name), 'w'))
 
 
 

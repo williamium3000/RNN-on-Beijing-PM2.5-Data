@@ -20,3 +20,101 @@
 
 [5 rows x 17 columns]
 (26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+Traceback (most recent call last):
+  File "rnn.py", line 145, in <module>
+    best_model, best_loss, rec = train(model=rnn, optimizer=optimizer, dataloaders=dataLoaders, device=device,
+  File "rnn.py", line 67, in train
+    model = model.to(device=device)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 607, in to
+    return self._apply(convert)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 354, in _apply
+    module._apply(fn)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/rnn.py", line 154, in _apply
+    ret = super(RNNBase, self)._apply(fn)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 376, in _apply
+    param_applied = fn(param)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 605, in convert
+    return t.to(device, dtype if t.is_floating_point() else None, non_blocking)
+RuntimeError: CUDA error: out of memory
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+Traceback (most recent call last):
+  File "rnn.py", line 145, in <module>
+    best_model, best_loss, rec = train(model=rnn, optimizer=optimizer, dataloaders=dataLoaders, device=device,
+  File "rnn.py", line 67, in train
+    model = model.to(device=device)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 607, in to
+    return self._apply(convert)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 354, in _apply
+    module._apply(fn)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/rnn.py", line 154, in _apply
+    ret = super(RNNBase, self)._apply(fn)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 376, in _apply
+    param_applied = fn(param)
+  File "/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/modules/module.py", line 605, in convert
+    return t.to(device, dtype if t.is_floating_point() else None, non_blocking)
+RuntimeError: CUDA error: out of memory
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
+/opt/conda/envs/pytorch_cuda10.2/lib/python3.8/site-packages/torch/nn/_reduction.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+   value1(t-2)  value2(t-2)  value3(t-2)  ...  value7(t-1)  value8(t-1)  value1(t)
+2     0.129779     0.352941     0.245902  ...     0.000000          0.0   0.159960
+3     0.148893     0.367647     0.245902  ...     0.000000          0.0   0.182093
+4     0.159960     0.426471     0.229508  ...     0.037037          0.0   0.138833
+5     0.182093     0.485294     0.229508  ...     0.074074          0.0   0.109658
+6     0.138833     0.485294     0.229508  ...     0.111111          0.0   0.105634
+
+[5 rows x 17 columns]
+(26280, 1, 16) (26280,) (17518, 1, 16) (17518,)
