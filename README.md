@@ -1,5 +1,6 @@
 # RNN-on-Beijing-PM2.5-Data
 RNN on Beijing PM2.5 Data Data prediction
+
 在北京PM2.5数据集上利用RNN（循环神经网络）通过前2个小时的PM2.5污染数据以及天气条件预测第三小时的PM2.5污染。
 ## 数据集
 北京PM2.5数据集（https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data），共43824条数据。
