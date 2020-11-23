@@ -1,5 +1,5 @@
 # RNN-on-Beijing-PM2.5-Data
-RNN on Beijing PM2.5 Data Data prediction
+RNN on Beijing PM2.5 Data Data prediction\\
 
 在北京PM2.5数据集上利用RNN（循环神经网络）通过前2个小时的PM2.5污染数据以及天气条件预测第三小时的PM2.5污染。
 ## 数据集
@@ -15,5 +15,6 @@ RNN on Beijing PM2.5 Data Data prediction
 在实验结果部分，将训练损失和测试损失绘制成图
 ![](reuslt/train_test_loss.png)
 
-![](reuslt/rnn_lstm_gru_loss.png)
+![](reuslt/rnn_lstm_gru_loss.png)\\
+
 在实验中，通过利用gru，lstm，rnn进行实验，并对比效果，可以看到gru的收敛速度较快，但最终结果lstm更加好
